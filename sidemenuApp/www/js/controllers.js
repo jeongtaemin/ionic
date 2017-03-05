@@ -53,4 +53,99 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
+
+.controller('ShareCtrl', function($scope) {
+
+  var message = '메시지';
+  var subject = 'subject';
+  var image = 'https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+  var link = 'http://www.google.com';
+
+  $scope.facebookShare=function(){
+    window.plugins.socialsharing.shareViaFacebook(
+     message, 
+      null /* image */, 
+      link,
+       null, 
+       function(errormsg){alert("Error: Cannot Share")});
+  }
+  $scope.twitterShare=function(){
+    window.plugins.socialsharing.shareViaTwitter(
+        message, 
+        null /* image */, 
+        link, null, 
+        function(errormsg){alert("Error: Cannot Share")}
+      );
+  }
+  $scope.OtherShare=function(){
+    window.plugins.socialsharing.share(message, null, null /* image */, link);
+  }
+
+})
+
+.controller('socialLoginCtrl', function($scope, ngFB) {
+ Kakao.init('74d8a04c5ca3f95dba978ed11ef9fbe2');
+ $scope.kakaoLogin = function() {
+     Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+          console.log(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+          console.log(JSON.stringify(err));
+        }
+      });
+ };
+
+ $scope.kakaoLogout = function() {
+  Kakao.Auth.logout({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+          console.log(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+          console.log(JSON.stringify(err));
+        }
+      });
+
+};
+
+  $scope.fbLogin = function() {
+    ngFB.login({scope: 'email,public_profile'}).then(
+        function (response) {
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                $scope.closeLogin();
+            } else {
+                alert('Facebook login failed');
+            }
+        });
+  };
+
+
+})
+
+.controller('ProfileCtrl', function ($scope, ngFB) {
+    ngFB.api({
+        path: '/me',
+        params: {fields: 'id,name'}
+    }).then(
+        function (user) {
+            $scope.user = user;
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        });
+})
+
+.controller('kakaoTokenCtrl', function($scope, ngFB) {
+ Kakao.init('74d8a04c5ca3f95dba978ed11ef9fbe2');
+ var refreshToken = Kakao.Auth.getRefreshToken();
+console.log(refreshToken)
+ $scope.data = refreshToken;
+
+
+})
