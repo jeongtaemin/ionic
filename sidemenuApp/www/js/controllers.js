@@ -84,34 +84,42 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('socialLoginCtrl', function($scope, ngFB) {
- Kakao.init('74d8a04c5ca3f95dba978ed11ef9fbe2');
- $scope.kakaoLogin = function() {
-     Kakao.Auth.login({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-          console.log(JSON.stringify(authObj));
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-          console.log(JSON.stringify(err));
+.controller('socialLoginCtrl', function($scope, ngFB, $http, $state, $ionicPopup, LoginSvc) {
+  //functions
+  $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+  $scope.kakaoLogin = function () {
+      String.prototype.startsWith = function (str) {
+        return this.indexOf(str) == 0;
+      };
+
+      var ref = LoginSvc.kakaoLogin();
+      console.log('1')
+      ref.addEventListener('loadstart', function (event) {
+        if ((event.url).startsWith(redirectUri)) {
+          reqToken = (event.url).split("code=")[1];
+          LoginSvc.getKakaoAccToken(reqToken)
+            .then(function (response) {
+              console.log('2')
+              accToken = response.access_token;
+              LoginSvc.getKakaoUserInfo(accToken)
+                .then(function (response) {
+                  $state.go('main');
+                });
+            }, function (data, status) {
+              var alertPopup = $ionicPopup.alert({
+                title: 'Login Fail!',
+                template: "data: " + data + "event: " + event + "redirect.url: " + event.url + ", Can't get access_token, status: " + status
+              });
+              alertPopup.then(function () {
+                console.log('3')
+                $state.go('login');
+              });
+            });
+          ref.close();
         }
       });
- };
-
- $scope.kakaoLogout = function() {
-  Kakao.Auth.logout({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-          console.log(JSON.stringify(authObj));
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-          console.log(JSON.stringify(err));
-        }
-      });
-
-};
+    };
+    console.log('4')
 
   $scope.fbLogin = function() {
     ngFB.login({scope: 'email,public_profile'}).then(
@@ -141,11 +149,8 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('kakaoTokenCtrl', function($scope, ngFB) {
- Kakao.init('74d8a04c5ca3f95dba978ed11ef9fbe2');
- var refreshToken = Kakao.Auth.getRefreshToken();
-console.log(refreshToken)
- $scope.data = refreshToken;
+.controller('kakaoTokenCtrl', function($scope, ngFB, $http, $state, $ionicPopup, LoginSvc) {
+  alert(accToken)
 
 
 })

@@ -1,7 +1,8 @@
-angular.module('starter.service', [])
+angular.module('starter.services', [])
 
 .service('LoginSvc', function ($q, $http) {
     this.kakaoLogin = function () {
+      console.log("https://kauth.kakao.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri)
       return window.open("https://kauth.kakao.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=code", '_blank', 'location=no');
     };
 

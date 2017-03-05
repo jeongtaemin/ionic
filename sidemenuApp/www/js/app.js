@@ -5,8 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
+//login
+var accToken = "";
+var reqToken = "";
+var clientId = "d529feb63406e13ecd6fe749385e62a0"; //Kakao REST API key
+var redirectUri = "http://192.168.0.5:8100/kakao_oauth";
 
-angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB',  'starter.services'])
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({appId: '1841536356101820'})
@@ -114,12 +119,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB'])
 
 .state('kakao_oauth', {
     url: "/kakao_oauth",
-    views: {
-        'menuContent': {
-            templateUrl: "templates/kakao_oauth.html",
-            controller: 'kakaoTokenCtrl'
-        }
-    }
+    templateUrl: 'templates/menu.html',
+    controller: 'kakaoTokenCtrl'
 })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
