@@ -1,0 +1,24 @@
+<ion-modal-view class="share_modal" ng-controller="bbsActCtrl">
+
+
+<div class="bar bar-header">
+  <div class="h1 title">공유하기</div>
+  <button class="button button-clear button-positive" ng-click="bbs_share_close();">닫기</button>
+</div>
+
+<ion-content class="share_content">
+
+	<div class="row">
+		<div class="col col-33">
+			<button class="share_btn button button-full button-positive icon ion-social-facebook" ng-click="shareFacebook();">페이스북</button>
+		</div>
+		<div class="col col-33">
+			<button class="share_btn button button-full button-calm icon ion-social-twitter" ng-click="shareTwitter();">트위터</button>
+		</div>
+		<div class="col col-33">
+			<button class="share_btn button button-full button-dark icon ion-ios-more" ng-click="shareAnywhere();">기타</button>
+		</div>
+	</div>
+
+</ion-content>
+</ion-modal-view>

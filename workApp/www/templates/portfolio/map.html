@@ -1,0 +1,70 @@
+<div ng-include="'templates/header.html'"></div>
+
+<ion-content lazy-scroll>
+	<div class="ac_wrap sub_content">
+
+		<ul class="tab_bar">
+			<li><a ui-sref="co" class="ac_btn blue ">포트폴리오</a></li>
+			<li><a ui-sref="co-find" class="ac_btn blue active">시공사찾기</a></li>
+		</ul>
+
+		<div class="news_list_wrap map_wrap" ng-controller="MapCtrl">
+			<button class="locate_btn">
+				<i class="icon ion-navigate placeholder-icon"></i>
+			</button>
+			<div class="search_input">
+				<label class="item item-input">
+					<input type="text" ng-model="search_map" placeholder="시공사를 검색하세요.">
+				</label>
+				<button class="clear search_btn" ng-click="map_search_company();">
+					<i class="icon ion-search placeholder-icon"></i>
+				</button>
+			</div>
+			<div id="map" data-tap-disabled="true"></div>
+
+			<div class="map_more_wrap">
+				<h3>현재위치 시공사 목록</h3>
+				<!-- <div class="more_btn_wrap">
+					<a ui-sref="co-find-map">전체보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div> -->
+				<ul class="find_com_list mb0">
+					<li ng-repeat="row in gps_list" ng-click="view_map( row.strCode );">
+						<div class="find_com_info">
+							<div class="profile_img">
+								<img ng-if="row.strCompanyLogo != 'noimage'" image-lazy-src="{{ row.strCompanyLogo}}" lazy-scroll-resize="true" image-lazy-loader="dots">
+								<img ng-if="row.strCompanyLogo == 'noimage'" image-lazy-src="./img/sub/img_noimage.gif" lazy-scroll-resize="true" image-lazy-loader="dots" />
+							</div>
+							<div class="profile_info">
+								<ol class="bc_info_contact">
+									<li>{{ row.strCompanyName }}</li>
+									<li>
+										<div class="bc_tit tel">전화</div>
+										<div class="bc_con">{{ row.strCompanyTel }}</div>
+									</li>
+									<li>
+										<div class="bc_tit fax">팩스</div>
+										<div class="bc_con">{{ row.strCompanyFax }}</div>
+									</li>
+									<li>
+										<div class="bc_tit addr">주소</div>
+										<div class="bc_con">{{ row.strCompanyAddress }}</div>
+									</li>
+								</ol>
+							</div>
+						</div>
+
+					</li>
+				</ul>
+
+				<div class="bbs_more">
+					<a href="javasciprt:;" ng-click="list_more();"><span>시공사</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div>
+			</div>
+		</div>
+
+		<div ng-include="'templates/a_banner.html'"></div>
+
+	</div><!-- .subcontent -->
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>

@@ -1,0 +1,34 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content lazy-scroll class="view-icon-content">
+	<div class="ac_wrap sub_content">
+
+		<div class="news_view_wrap">
+			<div class="webtoon_view">
+				<img image-lazy-src="./img/sub/webtoon/img_Alice_{{ file_name }}.jpg" lazy-scroll-resize="true" image-lazy-loader="dots" />
+			</div>
+		</div>
+ 
+	</div><!-- .subcontent -->
+	
+</ion-content>
+
+<div class="bar view-bar-footer ac_wrap webtoon_nav">
+	<ul class="row">
+		<li class="col-33 btn_pos1">
+			<button class="button button-clear webtoon_btn" ui-sref="webtoon-view({intId: before_num})" ng-hide="before_num==99">
+				<img src="./img/sub/webtoon/btn_web_prev.png">
+			</button>
+		</li>
+		<li class="col-33 btn_pos2">
+			<button class="button button-clear webtoon_btn" ui-sref="webtoon" >
+				<img src="./img/sub/webtoon/btn_web_list.png">
+			</button>
+		</li>
+		<li class="col-33 btn_pos3">
+			<button class="button button-clear webtoon_btn" ui-sref="webtoon-view({intId: after_num})" ng-hide="after_num==99">
+				<img src="./img/sub/webtoon/btn_web_next.png">
+			</button>
+		</li>
+	</ul>
+</div>

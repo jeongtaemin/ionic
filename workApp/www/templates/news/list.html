@@ -1,0 +1,43 @@
+<div ng-include="'templates/header.html'"></div>
+
+<ion-content>
+	<div class="ac_wrap sub_content">
+
+		<ul class="tab_bar">
+			<li><a ui-sref="news" class="ac_btn blue active">건축뉴스</a></li>
+			<li><a ui-sref="law" class="ac_btn blue">건축법</a></li>
+		</ul>
+
+		<div ng-controller="bbsListCtrl" class="news_list_wrap">
+			<ul class="bbs_list" >
+				<li class="article" ng-repeat="row in newsList">
+					<div class="left">
+						<a class="title" ui-sref="news-view({intId: row.intId})" >{{ row.strTitle }}</a>
+						<div class="info">
+							<ol>
+								<li class="info_attr">{{ row.strWriter }}</li>
+								<li class="line">&nbsp;</li>
+								<li class="info_attr">조회&nbsp;&nbsp;{{ row.intCount }}</li>
+							</ol>
+						</div>
+					</div>
+					<div class="right">
+						<div class="comment">
+							<span>{{ row.intComment }}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="bbs_more">
+				<a href="javasciprt:;" ng-click="list_more();"><span>건축뉴스</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+		</div>
+
+		<div ng-include="'templates/a_banner.html'"></div>
+
+	</div><!-- .subcontent -->
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>
+

@@ -1,0 +1,149 @@
+<div ng-include="'templates/header.html'"></div>
+
+<ion-content>
+	<div class="ac_wrap main_content">
+		
+		<section class="main2">
+			<h3 class="ms_title">시공사 포트폴리오</h3>
+			<div class="ms_more">
+				<a href="#" >더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+			
+			<div class="ms_content" >
+				<ion-scroll direction="x" zooming="false">
+					<ul class="ms_portfolio_u scrollbar-inner">
+						<li ng-repeat="row in coPort">
+							<a href="#">
+								<div class="port_thumb">
+									<img src="{{row.strFile1}}" />
+								</div>
+								<div class="port_desc">
+									<h4>{{ row.strTitle }}</h4>
+									<p>{{ row.strCompanyName }}</p>
+									<div class="port_reco on"><span class="screen_out">추천</span></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</ion-scroll>
+			</div>
+
+		</section>
+
+		<section class="main_banner">
+			<div class="ms_content">
+				<a href="#"><img src="./img/main/main_banner.png" class="img-responsive" alt="메인배너"/></a>
+			</div>
+		</section>
+
+		<section class="main3">
+			<h3 class="ms_title">건축사 포트폴리오</h3>
+			<div class="ms_more">
+				<a href="#" >더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+			<div class="ms_content">
+				<ion-scroll direction="x" zooming="false">
+					<ul class="ms_portfolio_u scrollbar-inner" >
+						<li ng-repeat="row in Portfolio">
+							<a href="#">
+								<div class="port_thumb">
+									<img src="{{row.strFile1}}" />
+								</div>
+								<div class="port_desc">
+									<h4>{{ row.strTitle }}</h4>
+									<p>{{ row.strCompanyName }}</p>
+									<div class="port_reco off"><span class="screen_out">추천</span></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</ion-scroll>
+			</div>
+		</section>
+
+		<section class="main1">
+			<h3 class="ms_title">건축뉴스</h3>
+			<div class="ms_more">
+				<a ui-sref="news">더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+			<div class="ms_content">
+				<ul class="ms_news_u" >
+					<li ng-repeat="row in news"><a ui-sref="news-view({intId: row.intId})">{{ row.strTitle }}</a></li>
+				</ul>
+			</div>
+		</section>
+
+
+		<section class="main4">
+			<h3 class="ms_title">자재정보</h3>
+			<div class="ms_content">
+				<ul class="ms_ma_u" >
+					<li ng-repeat="row in Material">
+						<a href="#">
+							<div class="ma_thumb">
+								<div class="ma_new"><span class="screen_out">NEW</span></div>
+								<img src="{{row.strFile1}}" />
+							</div>
+							<div class="ma_desc">
+								<h4>{{ row.strTitle }}</h4>
+								<p>{{ row.strCompanyName }}</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div class="more">
+					<a href="#" ><span>자재정보</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div>
+
+			</div>
+		</section>
+
+
+		<link rel="stylesheet" href="js/jquery.bxslider/jquery.bxslider.travel.css">
+		<script src="js/jquery.bxslider/jquery.bxslider.travel.js"></script>
+
+		<section class="main5">
+			<h3 class="ms_title">건축여행기</h3>
+			<div class="ms_content"> 
+
+				<ul class="ms_cl_u" 
+					data-uix-bxslider="
+					auto: false,
+					infiniteLoop: true,
+					wrapperClass: 'travel-wrapper',
+					autoControls: false,
+					adaptiveHeight: false,
+					pager:false,
+					touchEnabled: true,
+					nextSelector: '#travel-slider-next',
+					prevSelector: '#travel-slider-prev',
+					speed:100"
+				>
+					<div ng-repeat="row in Travel" data-notify-when-repeat-finished>
+						<li ng-repeat="key in row" ng-class="{'first':key.idx==0}">
+							<a ui-sref="{{ key.strSref }}-view({intId: key.intId})">
+								<div class="cl_thumb">
+									<img data-ng-src="{{key.image}}" class="img-responsive" alt="여행기"/>
+								</div>
+								<div class="cl_title">
+									<small ng-show="key.idx==0"><span>{{key.contry}}</span> 찾아떠나는 건축여행</small>
+									<h4>{{ key.strTitle }}</h4>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+				<div bx-btns></div>
+				
+				<div class="more">
+					<a ui-sref="travelog"><span>건축여행기</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>
+

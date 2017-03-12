@@ -1,0 +1,26 @@
+<div ng-include="'templates/header.html'"></div>
+
+<ion-content>
+	<div class="ac_wrap sub_content">
+
+		<ul class="tab_bar">
+			<li><a ui-sref="co" class="ac_btn blue ">포트폴리오</a></li>
+			<li><a ui-sref="co-find" class="ac_btn blue active">시공사찾기</a></li>
+		</ul>
+
+		<div class="find_wrap">
+			<div class="find_btn_wrap">
+				<ul>
+					<li><a ui-sref="co-find-map"><img src="./img/sub/img_map_search.png" /></a></li>
+					<li><a ui-sref="co-find-area"><img src="./img/sub/img_area_search.png" /></a></li>
+					<li class="last"><a ui-sref="co-find-com"><img src="./img/sub/img_com_search.png" /></a></li>
+				</ul>
+			</div>
+		</div>
+
+
+	</div><!-- .subcontent -->
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>
+

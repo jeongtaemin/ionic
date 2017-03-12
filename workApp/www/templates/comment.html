@@ -1,0 +1,55 @@
+<header class="ac_wrap nav_bar sub_line" ng-controller="sHeaderCtrl">
+	<!-- <a href="javascript:;" class="nav_toggle drawer-toggle"><span class="screen_out">메뉴열기</span></a> -->
+	<a href="javascript:;" class="nav_back" ng-click="back();"><span class="screen_out">뒤로</span></a>
+	<h1 id="sub_title">댓글</h1>
+	<!-- <a href="javascript:;" class="search_toggle"><span class="screen_out">검색창열기</span></a> -->
+</header>
+<div ng-include="'templates/nav.html'"></div>
+
+
+<ion-content class="view-icon-content">
+	<div class="ac_wrap sub_content">
+
+		<ul class="bbs_c_list">
+			<li class="comment" ng-repeat="row in commentList">
+				<div class="left">
+					<div class="profile_img">
+						<img src="./img/sub/img_user.png" alt="" />
+					</div>
+				</div>
+				<div class="center">
+					<div class="userid">{{ row.strWriter }}</div>
+					<div class="content" ng-bind-html="row.strContent | trust">
+						{{ row.strContent }}
+					</div>
+				</div>
+				<div class="right">
+					<div class="date">
+						<span>{{ row.datWrite }}</span>
+
+						<div ng-if="row.strWriter == loginData.m_strId">
+							<button class="button button-small button-positive btn_del" ng-click="delComment(row.intId)">삭제</button>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="no_data" ng-hide="commentList">
+				등록된 댓글이 없습니다.
+			</li>
+		</ul>
+
+
+		
+	 
+	</div><!-- .subcontent -->
+
+</ion-content>
+
+<footer class="bar view-bar-footer ac_wrap">
+	<div class="item item-input-inset">
+		<label class="item-input-wrapper input-comment">
+			<input type="text"  style="width:100%" placeholder="댓글을 입력하세요." id="content" ng-model="content" />
+		</label>
+		<button class="button button-small button-balanced" ng-click="addComment()">전송</button>
+	</div>
+</footer>

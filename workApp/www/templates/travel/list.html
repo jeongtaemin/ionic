@@ -1,0 +1,52 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content lazy-scroll class="view-icon-content2">
+	<div class="ac_wrap sub_content">
+
+		<div ng-controller="travelListCtrl" class="news_list_wrap">
+			<ul class="travel_bbs_list" >
+				<li class="article" ng-repeat="row in travelList">
+					<div class="left">
+						<div class="image_wrap">
+							<a class="title" ui-sref="{{ view_route }}-view({intId: row.intId})">
+								<img image-lazy-src="{{row.list_image}}" lazy-scroll-resize="true" image-lazy-loader="dots" />
+							</a>
+						</div>
+						<div class="title_wrap">
+							<a class="title" ui-sref="{{ view_route }}-view({intId: row.intId})" >{{ row.strTitle }}</a>
+						</div>
+						<div class="list_info">
+							<div class="info">
+								<ol>
+									<li class="info_attr">{{ row.strWriter }}</li>
+									<li class="line">&nbsp;</li>
+									<li class="info_attr">조회&nbsp;&nbsp;{{ row.intCount }}</li>
+								</ol>
+							</div>
+							<div class="info2">
+								<ol>
+									<li class="first">{{ row.intVoted }}</li>
+									<li class="second">{{ row.intComment }}</li>
+									<li class="third">{{ row.intScrap }}</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="bbs_more">
+				<a href="javasciprt:;" ng-click="list_more();">더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+		</div>
+
+
+		<div ng-include="'templates/a_banner.html'"></div>
+	 
+	</div><!-- .subcontent -->
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>
+
+
+

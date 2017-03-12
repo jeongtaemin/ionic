@@ -1,0 +1,89 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content class="view-icon-content">
+	<div class="ac_wrap sub_content">
+
+		<div class="news_view_wrap" ng-controller="bbsViewCtrl">
+			<div class="view_title"><h3>{{ newsView.strTitle }}</h3></div>
+			<div class="view_info">
+				<div class="info">
+					<ol>
+						<li class="info_attr ng-binding">{{ newsView.strWriter }}</li>
+						<li class="line">&nbsp;</li>
+						<li class="info_attr ng-binding">조회&nbsp;&nbsp;{{ newsView.intCount }}</li>
+					</ol>
+				</div>
+				<div class="info2">
+					<ol>
+						<li class="first">{{ newsView.intVoted }}</li>
+						<li class="second">{{ newsView.intComment }}</li>
+						<li class="third">{{ newsView.intScrap }}</li>
+					</ol>
+				</div>
+			</div>
+
+			<div class="view_content" ng-bind-html="newsView.strContent | trust">
+				{{ newsView.strContent }}
+			</div>
+
+
+			<ul class="bbs_c_list">
+				<li class="comment" ng-repeat="row in commentList">
+					<div class="left">
+						<div class="profile_img">
+							<img src="./img/sub/img_user.png" alt="" />
+						</div>
+					</div>
+					<div class="center">
+						<div class="userid">{{ row.strWriter }}</div>
+						<div class="content" ng-bind-html="row.strContent | trust">
+							{{ row.strContent }}
+						</div>
+					</div>
+					<div class="right">
+						<div class="date">
+							<span>{{ row.datWrite }}</span>
+						</div>
+					</div>
+				</li>
+				<li class="no_data" ng-hide="commentList">
+					등록된 댓글이 없습니다.
+				</li>
+			</ul>
+				
+			<div class="bbs_c_more" ng-hide="!commentList">
+				<a href="javasciprt:;" ui-sref="comment({intId: newsView.intId, strId:'apptest1'})"><span>댓글</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				<!-- <a href="javasciprt:;" ng-click="clist_more();"><span>댓글</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a> -->
+			</div>
+
+			<div class="travel_view_list">
+				<h3 class="tv_title"><strong>{{ tv_title }}</strong>를 찾아떠나는 여행기</h3>
+				<div class="tv_more">
+					<a ui-sref="{{ tv_url }}">더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div>
+				<div class="tv_content">
+					<ul class="tv_list">
+						<li ng-repeat="row in travelList" ng-class="{'last':$last}"> 
+							<div class="image_wrap">
+								<a class="title" ui-sref="{{ tv_url }}-view({intId: row.intId})">
+									<img src="{{row.list_image}}">
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			
+
+		</div>
+
+
+		<div ng-include="'templates/a_banner.html'"></div>
+	 
+	</div><!-- .subcontent -->
+	
+</ion-content>
+
+<div ng-include="'templates/sFooter.html'"></div>

@@ -1,0 +1,58 @@
+<div ng-include="'templates/header.html'"></div>
+
+<ion-content lazy-scroll>
+	<div class="ac_wrap sub_content">
+
+		<ul class="tab_bar">
+			<li><a ui-sref="co" class="ac_btn blue active">포트폴리오</a></li>
+			<li><a ui-sref="co-find" class="ac_btn blue">시공사찾기</a></li>
+		</ul>
+
+		<div ng-controller="portfolioListCtrl" class="news_list_wrap">
+			<ul class="portfolio_bbs_list" >
+				<li class="article" ng-repeat="row in list">
+					<div class="left">
+						<div class="image_wrap">
+							<a class="title" ui-sref="{{ view_route }}-view({intId: row.intId})">
+								<img ng-if="row.list_image != 'noimage'" image-lazy-src="{{row.list_image}}" lazy-scroll-resize="true" image-lazy-loader="dots" />
+								<img ng-if="row.list_image == 'noimage'" image-lazy-src="./img/sub/img_noimage.gif" lazy-scroll-resize="true" image-lazy-loader="dots" />
+							</a>
+						</div>
+						<div class="title_wrap">
+							<a class="title" ui-sref="{{ view_route }}-view({intId: row.intId})" >{{ row.strTitle }}</a>
+						</div>
+						<div class="list_info">
+							<div class="info">
+								<ol>
+									<li class="info_attr">
+										<div class="profile_img" >
+											<img ng-if="row.strCompanyLogo != 'noimage'" image-lazy-src="{{row.strCompanyLogo}}" lazy-scroll-resize="true" image-lazy-loader="dots" class="img-circle" />
+											<img ng-if="row.strCompanyLogo == 'noimage'" image-lazy-src="./img/sub/img_noimage.gif" lazy-scroll-resize="true" image-lazy-loader="dots" class="img-circle" />
+										</div>
+									</li>
+									<li class="info_attr name">{{ row.strCompanyName }}</li>
+								</ol>
+							</div>
+							<div class="info2">
+								<ol>
+									<li class="first">{{ row.intVoted }}</li>
+									<li class="second">{{ row.intComment }}</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="bbs_more">
+				<a href="javasciprt:;" ng-click="list_more();"><span>포트폴리오</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+			</div>
+		</div>
+
+		<div ng-include="'templates/a_banner.html'"></div>
+
+	</div><!-- .subcontent -->
+
+	<div ng-include="'templates/footer.html'"></div>
+</ion-content>
+

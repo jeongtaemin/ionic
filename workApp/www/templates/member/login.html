@@ -1,0 +1,26 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content lazy-scroll >
+	
+	<div class="list list-inset login_wrap">
+	  <h3><img image-lazy-src="./img/sub/login/logo.png" lazy-scroll-resize="true" image-lazy-loader="dots" /></h3>
+	
+	  <label class="item item-input">
+	    <input type="text" placeholder="이메일 주소" ng-model="data.username">
+	  </label>
+	  <label class="item item-input">
+	    <input type="password" placeholder="8자 이상, 문자, 숫자, 특수문자 포함" ng-model="data.password">
+	  </label>
+
+	  <button class="button button-clear button-full login_btn" ng-click="login()">로그인</button>
+
+	  <button class="button button-clear button-full pwd_btn" >비밀번호를 잊으셨나요?</button>
+
+	  <!-- <button class="button button-block button-balanced icon-left ion-ios-chatbubble" >네이버 로그인 연동</button>
+	  <button class="button button-block button-energized icon-left ion-ios-chatbubble" ng-click="kakao_login();">카카오계정으로 로그인</button>
+	  <button class="button button-block button-energized icon-left ion-ios-chatbubble" ng-click="kakao_logout();">카카오계정으로 로그아웃</button> -->
+
+
+	</div>
+
+</ion-content>

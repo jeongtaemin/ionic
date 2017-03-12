@@ -1,0 +1,27 @@
+<!-- <header class="ac_wrap nav_bar"> -->
+<header class="bar bar-header bar-light ac_wrap nav_bar">
+	<a href="javascript:;" class="nav_toggle drawer-toggle"><span class="screen_out">메뉴열기</span></a>
+	<h1 id="app_title"><a href="javascript:;"><span class="screen_out">아키타임즈</span></a></h1>
+	<a href="javascript:;" class="search_toggle"><span class="screen_out">검색창열기</span></a>
+	<div class="nav">
+		<ul class="nav_u" ng-controller="activeCtrl">
+			<li class="nav_l">
+				<a ui-sref="main" class="nav_a" ng-class="{ active: isActive('/') }"><span>홈</span></a>
+			</li>
+			<li class="nav_l">
+				<a ui-sref="co" class="nav_a" ng-class="{ active: isActive('co') }"><span>시공</span></a>
+			</li>
+			<li class="nav_l">
+				<a ui-sref="ar" class="nav_a" ng-class="{ active: isActive('ar') }"><span>설계</span></a>
+			</li>
+			<li class="nav_l">
+				<a ui-sref="ma" class="nav_a" ng-class="{ active: isActive('ma') }"><span>자재</span></a>
+			</li>
+			<li class="nav_l">
+				<a ui-sref="news" class="nav_a" ng-class="{ active: isActive('news') }"><span>건축정보</span></a>
+			</li>
+		</ul>
+
+	</div>
+</header>
+<div ng-include="'templates/nav.html'"></div>

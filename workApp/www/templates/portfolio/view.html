@@ -1,0 +1,108 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content lazy-scroll class="view-icon-content">
+	<div class="ac_wrap sub_content">
+
+		<div class="news_view_wrap" ng-controller="portfolioViewCtrl">
+			<div class="port_view_title"><h3>{{ newsView.strTitle }}</h3></div>
+			<div class="port_view_com_info">
+				<div class="profile_img" >
+					<img ng-if="newsView.strCompanyLogo != 'noimage'" image-lazy-src="{{newsView.strCompanyLogo}}" lazy-scroll-resize="true" image-lazy-loader="dots" />
+					<img ng-if="newsView.strCompanyLogo == 'noimage'" image-lazy-src="./img/sub/img_noimage.gif" lazy-scroll-resize="true" image-lazy-loader="dots" />
+				</div>
+				<div class="profile_info">
+					<ol class="bc_info_contact">
+						<li>
+							{{ newsView.strCompanyName }}
+						</li>
+						<li>
+							<div class="bc_tit tel">전화</div>
+							<div class="bc_con">{{ newsView.strCompanyTel }}</div>
+						</li>
+						<li>
+							<div class="bc_tit fax">팩스</div>
+							<div class="bc_con">{{ newsView.strCompanyFax }}</div>
+						</li>
+						<li>
+							<div class="bc_tit addr">주소</div>
+							<div class="bc_con">{{ newsView.strCompanyAddress }}</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="port_view_info">
+				<div class="info2">
+					<ol>
+						<li class="first">{{ newsView.intVoted }}</li>
+						<li class="second">{{ newsView.intComment }}</li>
+						<li class="third">{{ newsView.intScrap }}</li>
+					</ol>
+				</div>
+			</div>
+
+			<div class="view_content" ng-bind-html="newsView.strContent | trust">
+				{{ newsView.strContent }}
+			</div>
+
+
+			<ul class="bbs_c_list">
+				<li class="comment" ng-repeat="row in commentList">
+					<div class="left">
+						<div class="profile_img">
+							<img src="./img/sub/img_user.png" alt="" />
+						</div>
+					</div>
+					<div class="center">
+						<div class="userid">{{ row.strWriter }}</div>
+						<div class="content" ng-bind-html="row.strContent | trust">
+							{{ row.strContent }}
+						</div>
+					</div>
+					<div class="right">
+						<div class="date">
+							<span>{{ row.datWrite }}</span>
+						</div>
+					</div>
+				</li>
+				<li class="no_data" ng-hide="commentList">
+					등록된 댓글이 없습니다.
+				</li>
+			</ul>
+				
+			<div class="bbs_c_more" ng-hide="!commentList">
+				<a href="javasciprt:;" ui-sref="comment({intId: newsView.intId, strId:'apptest1'})"><span>댓글</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				<!-- <a href="javasciprt:;" ng-click="clist_more();"><span>댓글</span> 더보기<div class="more_bg"><span class="screen_out">more</span></div></a> -->
+			</div>
+
+			<div class="travel_view_list">
+				<h3 class="tv_title"><strong>{{ newsView.strCompanyName }}</strong>의 다른 포트폴리오</h3>
+				<div class="tv_more">
+					<a ui-sref="{{tv_url}}">더보기<div class="more_bg"><span class="screen_out">more</span></div></a>
+				</div>
+				<div class="tv_content">
+					<ul class="tv_list">
+						<li ng-repeat="row in otherlist" ng-class="{'last':$last}"> 
+							<div class="image_wrap">
+								<a class="title" ui-sref="{{tv_url}}-portfolio-view({intId: row.intId})">
+									<img ng-if="row.list_image != 'noimage'" image-lazy-src="{{row.list_image}}" lazy-scroll-resize="true" image-lazy-loader="dots" />
+									<img ng-if="row.list_image == 'noimage'" image-lazy-src="./img/sub/img_noimage.gif" lazy-scroll-resize="true" image-lazy-loader="dots" />
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			
+
+		</div>
+
+
+		<div ng-include="'templates/a_banner.html'"></div>
+	 
+	</div><!-- .subcontent -->
+	
+</ion-content>
+
+<div ng-include="'templates/sFooter.html'"></div>

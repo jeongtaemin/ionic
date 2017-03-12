@@ -1,0 +1,53 @@
+<nav class="drawermenu" ng-controller="getAccountCtrl" ng-hide="loginData.m_strId">
+	<div class="nav_top">
+		<a href="javascript:;" class="drawer_close drawer-toggle"><span class="screen_out">메뉴닫기</span></a>
+		<p>로그인 후 이용해 주세요</p>
+		<div class="login_btn_wrap row">
+			<a ui-sref="login" class="login_btn mgr col-50">로그인</a>
+			<a ui-sref="join_1" class="login_btn col-50">회원가입</a>
+		</div>
+	</div>
+	<div class="nav_bottom">
+		<ul>
+			<li><a ui-sref="find_id">아이디 찾기</a></li>
+			<li><a ui-sref="find_pwd">비밀번호 찾기</a></li>
+			<li><a href="#">1:1 문의</a></li>
+			<li><a href="#">광고문의</a></li>
+		</ul>
+		<div class="nav_banner">
+			<a ui-sref="event"><img src="./img/main/nav_banner.png" class="img-responsive" alt="배너" /></a>
+		</div>
+	</div>
+</nav>
+<nav class="drawermenu" ng-controller="getAccountCtrl" ng-show="loginData.m_strId">
+	<div class="nav_top">
+		<a href="javascript:;" class="drawer_close drawer-toggle"><span class="screen_out">메뉴닫기</span></a>
+		<div class="mem_kind">
+			자재사회원
+		</div>
+		<p>{{ loginData.m_strId }}<span>님</span></p>
+		<div class="login_btn_wrap" ng-controller="AccountCtrl">
+			<a href="javascript:;" class="logout_btn" ng-click="logout()">로그아웃</a>
+		</div>
+	</div>
+	<div class="nav_bottom">
+		<ul>
+			<li><a href="#">포트폴리오 등록</a></li>
+			<li><a href="#">관심포트폴리오</a></li>
+			<li><a href="#">관심업체</a></li>
+			<li><a href="#">광고문의</a></li>
+		</ul>
+		<div class="nav_banner">
+			<a ui-sref="event"><img src="./img/main/nav_banner.png" class="img-responsive" alt="배너" /></a>
+		</div>
+	</div>
+</nav>
+<div class="drawermenu_overlay"></div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.drawermenu').drawermenu({
+    speed:100,
+    position:'left'
+  });
+});
+</script>

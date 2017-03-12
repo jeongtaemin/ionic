@@ -1,0 +1,67 @@
+<div ng-include="'templates/sHeader.html'"></div>
+
+<ion-content lazy-scroll class="view-icon-content2">
+	<div class="ac_wrap sub_content">
+
+		<div class="news_view_wrap join_wrap">
+			<div class="row responsive-sm title">
+				<h3 class="col ">사용중인 이메일로 편리하게 가입해보세요.</h3>
+			</div>
+			<div class="row responsive-sm">
+				<form name="signUpForm" novalidate="" ng-submit="join()">
+					<div class="list col">
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">이름</span>
+							<input type="text" id="strName" placeholder="이름을 입력해주세요." value="조조">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">이메일</span>
+							<input type="text"  id="strId" placeholder="help@architimes.co.kr" value="help@architimes.co.kr">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">비밀번호</span>
+							<input type="password" id="strPassword"  placeholder="8자 이상, 문자, 숫자, 특수문자 포함" value="test1234!">
+						</label>
+						
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">비밀번호 확인</span>
+							<input type="password" id="strPassword2" placeholder="8자 이상, 문자, 숫자, 특수문자 포함" value="test1234!">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">연락처</span>
+							<input type="text"  id="strPhone" placeholder="- 제외" value="01012345678">
+						</label>
+					</div>
+
+					<div class="list col agree_c">
+						<div class="agree1">약관 동의 후 회원가입이 가능합니다.</div>
+						<div class="agree2">
+							<a ui-sref="agreement1">서비스 이용약관</a>
+							<label class="agree_label">동의 <input type="checkbox" id="chk1" /></label>
+						</div>
+						<div class="agree3">
+							<a ui-sref="agreement2">개인정보보호정책</a>
+							<label class="agree_label">동의 <input type="checkbox" id="chk2" /></label>
+						</div>
+						<div class="agree4">
+							<a ui-sref="agreement3">이메일무단수집거부</a>
+							<label class="agree_label">동의 <input type="checkbox" id="chk3" /></label>
+						</div>
+					</div>
+
+					<div class="list col">
+						<div class="agree5">
+							<label class="agree_label"><input type="checkbox" id="checkall" />모두 동의합니다.</label>
+						</div>
+					</div>
+
+					<div class="col">
+						<button class="button button-clear button-full join_btn"  type="submit" >이메일로 회원가입</button>
+					</div>
+				</form>
+			</div>
+		</div>
+ 
+	</div><!-- .subcontent -->
+	
+</ion-content>
